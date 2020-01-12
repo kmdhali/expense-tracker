@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Ajax and Json | Tutorial</title>
+<style>
+	body{
+		font-family: sans-serif;
+	}
+		.ajax-container{
+		width: 50%;
+		margin: 50px auto;
+	}
+	#btnAjaxCall{
+		height: 50px;
+		width: 120px;
+		border: none;
+		border-radius: 6px;
+		color: white;
+		background: #3498db;
+		outline: none;
+		font-size: 22px;
+		opacity: 0.7;
+		padding: 10px;
+	}
+	#btnAjaxCall:hover{
+		cursor: pointer;
+		opacity: 1;
+	}
+	.item-details{
+		margin-top: 10px;
+		border: 1px solid #ddd;
+		padding: 6px;
+	}
+</style>
+	
+</head>
+
+<body>
+	<div class="ajax-container">
+		<input type="button" id="btnAjaxCall" value="Ajax Call" />
+		
+		<div class="display-data">
+			
+		</div>
+	</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			  crossorigin="anonymous"></script>
+			  
+<script>
+	var count = 0;
+	
+	$("#btnAjaxCall").click(function(){
+		fetchDataAndDisplay();
+	});
+	
+	function fetchDataAndDisplay(){
+		$.ajax({
+			url:"https://jsonplaceholder.typicode.com/posts",
+			method:"GET"
+		}).done(function(data){
+			var start = count > 0 ? 5 * count : count;
+			var end1 = start + 5;
+			var str = '';
+			ver i=0;
+			
+			
+				//	for(var i=start; i < end1; i++)
+					
+					{
+				str += '<div class="item-details">' + 
+						'User Id is = ' + data[i].userId + '<br />' +
+						'Id is= ' + data[i].id + '<br />' +
+						'Titile is = ' + data[i].title + '<br />' +
+						'</div>';
+			}
+			
+			if(start == data.length){
+				count = 0;
+				$(".display-data").empty();
+				$(".display-data").append("List Traversed. Start over!");
+				return;
+			}
+			
+			count++;
+			$(".display-data").empty();
+			$(".display-data").append(str);
+		})
+	}
+</script>
+
+</html>

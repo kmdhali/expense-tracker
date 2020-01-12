@@ -1,0 +1,20 @@
+CREATE TABLE transaction(   
+   card_id  VARCHAR (50) ,  
+   transaction_id VARCHAR (150) , 
+   account_id VARCHAR (150), 
+   category_cd  VARCHAR (50)  , 
+   transaction_type VARCHAR (50), 
+   mrchnt_name_or_desc VARCHAR (50), 
+   amount NUMERIC (10,2), 
+   iso_currency_code VARCHAR (6), 
+   unofficial_currency_code VARCHAR (10), 
+   tran_date DATE , 
+   location_id  VARCHAR (150) , 
+   pending bool,
+   pending_transaction_id VARCHAR (150), 
+   account_owner VARCHAR (50),    
+   create_ts TIMESTAMP , 
+   feed_seq NUMERIC(10,0) , 
+   created_by VARCHAR (50), 
+   PRIMARy KEY(card_id, transaction_id)
+);

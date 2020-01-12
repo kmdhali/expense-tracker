@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>SpendWise{ly"}</title>
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+/* Style the header */
+.header {
+	background-color: #363663;
+	padding: 5px;
+	text-align: left;
+}
+
+.header h1 {
+	height: 35px;
+	line-height: normal;
+	margin: 0;
+	padding-left: 10px;
+	color: #b48608;
+	font-family: 'Palatino Linotype';
+	font-family: Palatino, "Palatino Linotype", "Palatino LT STD","Book Antiqua", Georgia, serif;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+
+	font-style: italic;
+	line-height: 44px;
+	margin: 0 0 12px;
+	text-align: left;
+}
+
+/* Style the top navigation bar */
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+	float: left;
+	padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+	width: 10%;
+}
+
+/* Left and right column */
+.column.right {
+	width: 20%;
+}
+
+/* Middle column */
+.column.middle {
+	width: 70%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+	.column.side, .column.middle {
+		width: 100%;
+	}
+}
+
+.iframe-container {
+	overflow: hidden; // Calculated from the aspect ration of the content
+	(in case of 16 : 9 it is 9/ 16 = 0.5625) padding-top : 56.25%;
+	position: relative;
+}
+
+.iframe-container iframe {
+	border: 0;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+iframe.example {
+	width: 100%;
+	height: 500px;
+}
+</style>
+
+
+<meta charset="ISO-8859-1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+</head>
+<body>
+
+	<div class="header">
+		<h1>SpendWise{ly}</h1>
+		<button type="button" onclick="loadDoc()">Change Content</button>
+	</div>
+
+	<div class="topnav">
+		<ul class="navbar-nav" id="tabs-production"
+			style="vertical-align: baseline; font-weight: 400; font-style: normal; font-size: 14px; list-style-position: outside; list-style-type: none; display: flex; overflow-x: auto; justify-content: space-between; color: rgb(51, 51, 51); font-family: AvenirNext-Regular-Mint, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; border: 0px none; margin: 0px; padding: 0px; background-color: rgb(247, 247, 247)">
+			<li id="overview" class=" col"
+				style="vertical-align: baseline; font-weight: inherit; font-style: inherit; font-size: 14px; cursor: pointer; text-align: center; white-space: nowrap; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px">
+				<a class="selected"
+				style="border-image: initial; font-weight: inherit; font-style: inherit; font-size: 12px; vertical-align: baseline; color: rgb(51, 51, 51); text-decoration: none; cursor: pointer; font-family: AvenirNext-DemiBold-Mint, 'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform: uppercase; border-left: 0px initial initial; border-right: 0px initial initial; border-top: 0px initial initial; border-bottom: 3px solid rgb(10, 199, 117); margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px"
+				href="home4"> OVERVIEW </a>
+			</li>
+
+			<li id="transaction" class=" col"
+				style="vertical-align: baseline; font-weight: inherit; font-style: inherit; font-size: 14px; cursor: pointer; text-align: center; white-space: nowrap; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px">
+				<a
+				style="font-weight: inherit; font-style: inherit; font-size: 12px; vertical-align: baseline; color: rgb(51, 51, 51); text-decoration: none; cursor: pointer; font-family: AvenirNext-Medium-Mint, 'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform: uppercase; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px"
+				href="transactions"> TRANSACTIONS</a>
+			</li>
+			<li id="Payments" class=" col"
+				style="vertical-align: baseline; font-weight: inherit; font-style: inherit; font-size: 14px; cursor: pointer; text-align: center; white-space: nowrap; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px">
+				<a
+				style="font-weight: inherit; font-style: inherit; font-size: 12px; vertical-align: baseline; color: rgb(51, 51, 51); text-decoration: none; cursor: pointer; font-family: AvenirNext-Medium-Mint, 'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform: uppercase; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px"
+				href="#"> BILLS</a>
+			</li>
+			<li id="planning" class=" col"
+				style="vertical-align: baseline; font-weight: inherit; font-style: inherit; font-size: 14px; cursor: pointer; text-align: center; white-space: nowrap; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px">
+				<a
+				style="font-weight: inherit; font-style: inherit; font-size: 12px; vertical-align: baseline; color: rgb(51, 51, 51); text-decoration: none; cursor: pointer; font-family: AvenirNext-Medium-Mint, 'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform: uppercase; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px"
+				href="#"> BUDGETS</a>
+			</li>
+			<li id="trend" class=" col"
+				style="vertical-align: baseline; font-weight: inherit; font-style: inherit; font-size: 14px; cursor: pointer; text-align: center; white-space: nowrap; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px">
+				<a
+				style="font-weight: inherit; font-style: inherit; font-size: 12px; vertical-align: baseline; color: rgb(51, 51, 51); text-decoration: none; cursor: pointer; font-family: AvenirNext-Medium-Mint, 'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform: uppercase; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px"
+				href="#"> TRENDS</a>
+			</li>
+
+		</ul>
+
+
+	</div>
+
+	<div class="row">
+		<div class="column side"
+			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
+			<h3>Spendwisely ..</h3>
+			<p>Get all your expenses in a single place , in a single graph !!
+			</p>
+		</div>
+
+<!-- 		<div class="column middle" 
+			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
+			<div  id="demo">
+				<iframe class="example" frameBorder="0" src="displayBarGraph2"
+					name="iframe_a"> </iframe>
+			</div>
+		</div> -->
+		
+		<div id="demo2" class="column middle" 
+			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
+        <p>Hello Sir ..</p>
+		</div>
+		
+		
+		
+		
+		<div class="column right"
+			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
+			<h1>Quick links for you..</h1>
+			<p>
+				<a href="displayBarGraph2" target="iframe_a">displayBarGraph2</a>
+			</p>
+			<p>
+				<a href="transactions" target="iframe_a">transactions</a>side
+			</p>
+		</div>
+	</div>
+
+
+	<script>
+		function loadDoc() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("demo2").innerHTML = this.responseText;
+				}
+			};
+			xhttp.open("GET", "displayBarGraph2", true);
+			xhttp.send();
+		}
+	</script>
+
+
+</body>
+</html>

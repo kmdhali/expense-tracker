@@ -1,0 +1,1 @@
+java -DPLAID_PUBLIC_KEY=0660258ba5dfe9d081a3a09f89f1fa -DPLAID_CLIENT_ID=5de6e8cb5eca930014ffd863 -DPLAID_SECRET=f1070de16de2031f9ed5bb4dfdfb76 -DPLAID_ENV=development -jar ./target/plaid-quickstart-java-0.0.1.jar

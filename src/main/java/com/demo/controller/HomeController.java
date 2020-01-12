@@ -1,6 +1,9 @@
-package com.demo;
+package com.demo.controller;
 
-import com.demo.kmd.service.FinancialTransactionService;
+import com.demo.PlaidAuthService;
+import com.demo.kmd.models.PlaidAuthData;
+import com.demo.kmd.scheduler.FinancialTransactionService;
+import com.demo.kmd.scheduler.PersistanceService;
 import com.plaid.client.PlaidClient;
 import com.plaid.client.request.AuthGetRequest;
 import com.plaid.client.request.InstitutionsGetByIdRequest;
@@ -46,6 +49,9 @@ public class HomeController {
 
     @Autowired
     FinancialTransactionService financialTransactionService;
+    
+    @Autowired 
+    PersistanceService persistanceService;
 
     @Autowired
     public HomeController(Environment env, PlaidClient plaidClient, PlaidAuthService authService) {
@@ -65,23 +71,48 @@ public class HomeController {
         return "index";
     }
 
+    
+//    @RequestMapping(value="/home1", method=GET)
+//    public String home(Model model) {
+//        model.addAttribute("PLAID_PUBLIC_KEY", env.getProperty("PLAID_PUBLIC_KEY"));
+//        model.addAttribute("PLAID_ENV", env.getProperty("PLAID_ENV"));
+//        return "home1";
+//    }
+
+    
+    
+    
     /**
      * Exchange link public token for access token.
      */
     @RequestMapping(value="/get_access_token", method=POST, consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public @ResponseBody ResponseEntity getAccessToken(@RequestParam("public_token") String publicToken) throws Exception {
-        Response<ItemPublicTokenExchangeResponse> response = this.plaidClient.service()
+        
+    	System.out.println("****   /get_access_token called from the dropin model of plaid.**** ");
+    	System.out.println("/Exchanging the public-token for access-token..");
+    	
+    	Response<ItemPublicTokenExchangeResponse> response = this.plaidClient.service()
                 .itemPublicTokenExchange(new ItemPublicTokenExchangeRequest(publicToken))
                 .execute();
 
         if (response.isSuccessful()) {
+        	System.out.println("Successfully exhanged the token with plaid service  ..");
+        	
             this.authService.setAccessToken(response.body().getAccessToken());
             this.authService.setItemId(response.body().getItemId());
 
             Map<String, Object> data = new HashMap<>();
             data.put("error", false);
+            
+            //kmd
+            PlaidAuthData plaidAuthData=new PlaidAuthData("KironHardcoaded", response.body().getItemId(), response.body().getAccessToken(), publicToken);
+            
+            System.out.println("Saving the accessToken on the datastore ..");
+            persistanceService.insert(plaidAuthData);
 
             return ResponseEntity.ok(data);
+            
+            
         } else {
             return ResponseEntity.status(500).body(getErrorResponseData(response.errorBody().string()));
         }
@@ -91,6 +122,7 @@ public class HomeController {
      * Retrieve high-level account information and account and routing numbers
      * for each account associated with the Item.
      */
+    
     @RequestMapping(value="/accounts", method=GET, produces=MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity getAccount() throws Exception {
         if (authService.getAccessToken() == null) {
@@ -188,10 +220,10 @@ public class HomeController {
     public @ResponseBody ResponseEntity getTransactions2() throws Exception {
     	
     	try {
-        if (authService.getAccessToken() == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(getErrorResponseData("Not authorized"));
-        }
+//        if (authService.getAccessToken() == null) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+//                    .body(getErrorResponseData("Not authorized"));
+//        }
         
         System.out.print("getTransactions2 hit");
         TransactionsGetResponse trans= financialTransactionService.getTransactions();
@@ -217,8 +249,7 @@ public class HomeController {
                 .execute();
                 */
 
-            return ResponseEntity.ok(trans);
-            
+            return ResponseEntity.ok(trans);            
     	}catch(Exception exp) {
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errorrrrrr");
@@ -226,6 +257,8 @@ public class HomeController {
     }
     
 
+    
+    
     private Map<String, Object> getErrorResponseData(String message) {
         Map<String, Object> data = new HashMap<>();
         data.put("error", false);
