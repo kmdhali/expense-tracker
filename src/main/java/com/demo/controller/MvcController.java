@@ -3,46 +3,15 @@ package com.demo.controller;
 import com.demo.kmd.models.FinStatistics;
 import com.demo.kmd.models.TransactionInfo;
 import com.demo.kmd.repository.TransactionJpaRepository;
-import com.demo.kmd.scheduler.DBQueryService;
-import com.demo.kmd.scheduler.FinancialTransactionService;
-import com.plaid.client.PlaidClient;
-import com.plaid.client.request.AuthGetRequest;
-import com.plaid.client.request.InstitutionsGetByIdRequest;
-import com.plaid.client.request.ItemGetRequest;
-import com.plaid.client.request.ItemPublicTokenExchangeRequest;
-import com.plaid.client.request.TransactionsGetRequest;
-import com.plaid.client.response.AuthGetResponse;
-import com.plaid.client.response.ErrorResponse;
-import com.plaid.client.response.InstitutionsGetByIdResponse;
-import com.plaid.client.response.ItemGetResponse;
-import com.plaid.client.response.ItemPublicTokenExchangeResponse;
-import com.plaid.client.response.ItemStatus;
-import com.plaid.client.response.TransactionsGetResponse;
-import com.plaid.client.response.TransactionsGetResponse.Transaction;
+import com.demo.kmd.service.DBQueryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import retrofit2.Response;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import static org.springframework.web.bind.annotation.RequestMethod.*;
+import java.util.*;
 
 @Controller
 public class MvcController {
@@ -65,7 +34,10 @@ public class MvcController {
 
 	@GetMapping("/displayBarGraph2")
 	public String spendGraph(Model model) throws Exception {
+	System.out.println("Staring spendGraph..");
 		Map<String, Float> dailyCostMap = new LinkedHashMap<>();
+
+
 
 		Map<String, Float> progressiveTotal = new LinkedHashMap<>();
 
@@ -112,6 +84,7 @@ public class MvcController {
 
 		System.out.println(dailyCostMap);
 		System.out.println(progressiveTotal);
+
 
 		model.addAttribute("surveyMap", dailyCostMap);
 		model.addAttribute("progressiveTotal", progressiveTotal);

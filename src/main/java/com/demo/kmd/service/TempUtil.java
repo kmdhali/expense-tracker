@@ -1,7 +1,6 @@
-package com.demo.kmd.scheduler;
+package com.demo.kmd.service;
 
 import com.demo.kmd.models.TransactionInfo;
-import com.plaid.client.response.TransactionsGetResponse.Transaction;
 
 public class TempUtil {
 

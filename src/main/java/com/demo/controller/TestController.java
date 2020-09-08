@@ -3,44 +3,26 @@ package com.demo.controller;
 import com.demo.kmd.models.FinStatistics;
 import com.demo.kmd.models.PlaidAuthData;
 import com.demo.kmd.models.TransactionInfo;
-import com.plaid.client.PlaidClient;
-import com.plaid.client.request.AuthGetRequest;
-import com.plaid.client.request.InstitutionsGetByIdRequest;
-import com.plaid.client.request.ItemGetRequest;
-import com.plaid.client.request.ItemPublicTokenExchangeRequest;
-import com.plaid.client.request.TransactionsGetRequest;
-import com.plaid.client.response.AuthGetResponse;
-import com.plaid.client.response.ErrorResponse;
-import com.plaid.client.response.InstitutionsGetByIdResponse;
-import com.plaid.client.response.ItemGetResponse;
-import com.plaid.client.response.ItemPublicTokenExchangeResponse;
-import com.plaid.client.response.ItemStatus;
 import com.plaid.client.response.TransactionsGetResponse;
 import com.plaid.client.response.TransactionsGetResponse.Transaction;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import retrofit2.Response;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.demo.kmd.repository.TransactionJpaRepository;
-import com.demo.kmd.scheduler.FinancialTransactionService;
-import com.demo.kmd.scheduler.PersistanceService;
-import com.demo.kmd.scheduler.TransactionInfoCollectionEnd2EndService;
+import com.demo.kmd.service.FinancialTransactionService;
+import com.demo.kmd.service.PersistanceService;
+import com.demo.kmd.service.TransactionInfoCollectionEnd2EndService;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 

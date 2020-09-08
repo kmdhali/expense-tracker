@@ -20,7 +20,10 @@ public class PlaidApplication extends WebMvcConfigurerAdapter{
 		registry.addViewController("/ajaxCall").setViewName("ajaxCall");;
 		registry.addViewController("/home4").setViewName("home4");
 		registry.addViewController("/home5ajax").setViewName("home5ajax");
-		
+        registry.addViewController("/home5ajax2").setViewName("home5ajax2");
+		registry.addViewController("/home5").setViewName("home5");
+		registry.addViewController("/add-card-dropin").setViewName("add-card-dropin");
+		registry.addViewController("/home6card").setViewName("home6card");
 	}
     public static void main(String... args) {
         SpringApplication.run(PlaidApplication.class);

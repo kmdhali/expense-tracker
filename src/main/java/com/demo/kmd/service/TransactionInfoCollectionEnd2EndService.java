@@ -1,4 +1,4 @@
-package com.demo.kmd.scheduler;
+package com.demo.kmd.service;
 
 import java.util.Date;
 import java.util.ArrayList;

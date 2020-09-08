@@ -27,5 +27,10 @@ public interface TransactionJpaRepository extends  CrudRepository<TransactionInf
     @Query("SELECT new com.demo.kmd.models.FinStatistics(t.date, SUM(t.amount)) FROM TransactionInfo t where  t.date >= '2019-12-01' group by t.date")
 
     List<FinStatistics> getDailyExpenses();
-    
+
+    @Query("SELECT new com.demo.kmd.models.FinStatistics(t.date, SUM(t.amount)) FROM TransactionInfo t where  t.date >= '2019-12-01' group by t.date")
+
+    List<FinStatistics> getDailyExpensesForMonth();
+
+
 }

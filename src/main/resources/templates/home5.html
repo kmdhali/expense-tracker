@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
 <title>SpendWise{ly"}</title>
 <meta charset="utf-8"></meta>
@@ -29,6 +29,25 @@ body {
 	font-family: 'Palatino Linotype';
 	font-family: Palatino, "Palatino Linotype", "Palatino LT STD","Book Antiqua", Georgia, serif;
 	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+
+	font-style: italic;
+	line-height: 44px;
+	margin: 0 0 12px;
+	text-align: left;
+}
+
+.header h2{
+	height: 35px;
+	line-height: normal;
+	margin: 0;
+	padding-left: 10px;
+	color: #b48608;
+	font-family: 'Palatino Linotype';
+	font-family: Palatino, "Palatino Linotype", "Palatino LT STD","Book Antiqua", Georgia, serif;
+	font-size: 12px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 700;
@@ -115,22 +134,18 @@ iframe.example {
 	width: 100%;
 	height: 500px;
 }
+
+div.a {
+	line-height: normal;
+}
+
+
 </style>
-
-
-<meta charset="ISO-8859-1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
-
 </head>
 <body>
 
 	<div class="header">
 		<h1>SpendWise{ly}</h1>
-		<button type="button" onclick="loadDoc()">Change Content</button>
 	</div>
 
 	<div class="topnav">
@@ -165,7 +180,7 @@ iframe.example {
 				style="vertical-align: baseline; font-weight: inherit; font-style: inherit; font-size: 14px; cursor: pointer; text-align: center; white-space: nowrap; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px">
 				<a
 				style="font-weight: inherit; font-style: inherit; font-size: 12px; vertical-align: baseline; color: rgb(51, 51, 51); text-decoration: none; cursor: pointer; font-family: AvenirNext-Medium-Mint, 'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform: uppercase; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px"
-				href="#"> TRENDS</a>
+				href="/"> ADD CARDS   .</a>
 			</li>
 
 		</ul>
@@ -174,55 +189,53 @@ iframe.example {
 	</div>
 
 	<div class="row">
-		<div class="column side"
-			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
-			<h3>Spendwisely ..</h3>
-			<p>Get all your cards, expenses in a single place , in a single graph !!
-			</p>
-		</div>
+		<!--div class="column side" style="border:5px solid rgb(128, 191, 255) ; margin-top: 10px; margin-right: 10px; " -->
+			<div style="font-weight: inherit; font-style: inherit; font-size: 12px; vertical-align: baseline; color: rgb(51, 51, 51); text-decoration: none; cursor: pointer; font-family: AvenirNext-Medium-Mint, 'Helvetica Neue', Helvetica, Arial, sans-serif; text-transform: uppercase; border: 0px none; margin: 0px; padding-left: 0px; padding-right: 0px; padding-top: 10px; padding-bottom: 10px">
+				Get all your expenses, cards in a single place ,in a single graph !!
+			</div>
+		<!--/div-->
 
-<!-- 		<div class="column middle" 
-			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
-			<div  id="demo">
+		
+		<div class="column middle" style="border:5px solid rgb(128, 191, 255) ; margin-top: 10px; margin-right: 10px; ">
+			<div>
 				<iframe class="example" frameBorder="0" src="displayBarGraph2"
 					name="iframe_a"> </iframe>
 			</div>
-		</div> -->
-		
-		<div id="demo2" class="column middle" 
-			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
-        <p>Hello Sir ..</p>
 		</div>
-		
-		
-		
-		
-		<div class="column right"
-			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
-			<h1>Quick links for you..</h1>
+		<div class="column right" style="border:5px solid rgb(128, 191, 255) ; margin-top: 10px; margin-right: 10px; ">
+			<h3>Quick links for you..</h3>
+			<p>
+				<a href="transactions" target="iframe_a">Run Expense Analysis</a>
+			</p>
+			<p>
+				<a href="transactions" target="iframe_a">Show Refunds</a>
+			</p>
+
+			<p>
+				<a href="transactions" target="iframe_a">Dump all transactions</a>
+			</p>
+			<p>
+				<a href="transactions" target="iframe_a">Show Gas trends(Mileage, Cost)</a>
+			</p>
+			<p>
+				<a href="transactions" target="iframe_a">Suspected Transactions</a>
+			</p>
 			<p>
 				<a href="displayBarGraph2" target="iframe_a">displayBarGraph2</a>
 			</p>
-			<p>
-				<a href="transactions" target="iframe_a">transactions</a>side
-			</p>
 		</div>
 	</div>
-
-
-	<script>
-		function loadDoc() {
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					document.getElementById("demo2").innerHTML = this.responseText;
-				}
-			};
-			xhttp.open("GET", "displayBarGraph2", true);
-			xhttp.send();
-		}
-	</script>
-
-
+	<Br>
+	<br>
+	<div id="footer">
+		<div class="secondary-links" style="margin: 0px; padding: 0px; border: 0px; font-weight: 400; font-style: normal; font-size: 14px; vertical-align: baseline; color: rgb(51, 51, 51); font-family: AvenirNext-Regular-spendwisely, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;">
+			<a id="body-footer-help" target="_blank" style="margin: 0px; padding: 0px 2%; border: 0px; font-weight: inherit; font-style: inherit; font-size: 14px; vertical-align: baseline; color: rgb(165, 165, 165); text-decoration: none; cursor: pointer; font-family: AvenirNext-Regular-spendwisely, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; position: relative;" href="https://help.spendwisely.com/">
+				Support</a>&nbsp;<a id="footer-safe" target="_blank" style="margin: 0px; padding: 0px 2%; border: 0px; font-weight: inherit; font-style: inherit; font-size: 14px; vertical-align: baseline; color: rgb(165, 165, 165); text-decoration: none; cursor: pointer; font-family: AvenirNext-Regular-spendwisely, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; position: relative;" href="http://www.spendwisely.com/terms">Terms
+			of Use&nbsp;</a><a id="footer-privacy" target="_blank" style="margin: 0px; padding: 0px 2%; border: 0px; font-weight: inherit; font-style: inherit; font-size: 14px; vertical-align: baseline; color: rgb(165, 165, 165); text-decoration: none; cursor: pointer; font-family: AvenirNext-Regular-spendwisely, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; position: relative;" href="http://www.spendwisely.com/privacy">Privacy</a>&nbsp;<a id="footer-terms" target="_blank" class="last" style="margin: 0px; padding: 0px 2%; border: 0px; font-weight: inherit; font-style: inherit; font-size: 14px; vertical-align: baseline; color: rgb(165, 165, 165); text-decoration: none; cursor: pointer; font-family: AvenirNext-Regular-spendwisely, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; position: relative;" href="http://about.spendwisely.com/legal/">Legal
+			and Trademark Notices&nbsp;</a><a id="about-us" target="_blank" style="margin: 0px; padding: 0px 2%; border: 0px; font-weight: inherit; font-style: inherit; font-size: 14px; vertical-align: baseline; color: rgb(165, 165, 165); text-decoration: none; cursor: pointer; font-family: AvenirNext-Regular-spendwisely, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; position: relative;" href="http://about.spendwisely.com/about_spendwisely/">About
+			spendwisely</a></div>
+		<p class="copyright" style="margin: 0px; padding: 0px; border: 0px; font-weight: 400; font-style: normal; font-size: 11px; vertical-align: baseline; line-height: 1.4em; color: rgb(165, 165, 165); font-family: AvenirNext-Regular-spendwisely, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(247, 247, 247); text-decoration-style: initial; text-decoration-color: initial;">
+			© 2019 spendwisely, Inc.&nbsp;&nbsp;|&nbsp;&nbsp;<span id="buildNumber" style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 11px; vertical-align: baseline;">kironmoy.dhali@gmail.com</span></p>
+	</div>
 </body>
 </html>

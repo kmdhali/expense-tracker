@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
 <title>SpendWise{ly"}</title>
 <meta charset="utf-8"></meta>
@@ -116,21 +116,11 @@ iframe.example {
 	height: 500px;
 }
 </style>
-
-
-<meta charset="ISO-8859-1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
-
 </head>
 <body>
 
 	<div class="header">
 		<h1>SpendWise{ly}</h1>
-		<button type="button" onclick="loadDoc()">Change Content</button>
 	</div>
 
 	<div class="topnav">
@@ -174,31 +164,20 @@ iframe.example {
 	</div>
 
 	<div class="row">
-		<div class="column side"
-			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
+		<div class="column side" style="border:5px solid rgb(128, 191, 255) ; margin-top: 10px; margin-right: 10px; " >
 			<h3>Spendwisely ..</h3>
-			<p>Get all your cards, expenses in a single place , in a single graph !!
-			</p>
+			<p>Get all your expenses in a single place , in a single graph !! </p>
+			<button type="button" onclick="loadDoc()">Change Content</button>
 		</div>
 
-<!-- 		<div class="column middle" 
-			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
-			<div  id="demo">
+		
+		<div class="column middle" style="border:5px solid rgb(128, 191, 255) ; margin-top: 10px; margin-right: 10px; ">
+			<div>
 				<iframe class="example" frameBorder="0" src="displayBarGraph2"
 					name="iframe_a"> </iframe>
 			</div>
-		</div> -->
-		
-		<div id="demo2" class="column middle" 
-			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
-        <p>Hello Sir ..</p>
 		</div>
-		
-		
-		
-		
-		<div class="column right"
-			style="border: 5px solid rgb(128, 191, 255); margin-top: 10px; margin-right: 10px;">
+		<div id="demo2"  class="column right" style="border:5px solid rgb(128, 191, 255) ; margin-top: 10px; margin-right: 10px; ">
 			<h1>Quick links for you..</h1>
 			<p>
 				<a href="displayBarGraph2" target="iframe_a">displayBarGraph2</a>
@@ -209,20 +188,27 @@ iframe.example {
 		</div>
 	</div>
 
-
 	<script>
 		function loadDoc() {
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
 					document.getElementById("demo2").innerHTML = this.responseText;
+					console.log(this.responseText);
+					window.alert(this.responseText);
+					var ele = document.getElementById('demo2');
+					//ele.innerHTML = html;
+					var codes = ele.getElementsByTagName("script");
+					for(var i=0;i<codes.length;i++)
+					{
+						eval(codes[i].text);
+					}
+
 				}
 			};
 			xhttp.open("GET", "displayBarGraph2", true);
 			xhttp.send();
 		}
 	</script>
-
-
 </body>
 </html>
