@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -32,12 +33,12 @@ public class MvcController {
 	 * 
 	 */
 
+
+
 	@GetMapping("/displayBarGraph2")
-	public String spendGraph(Model model) throws Exception {
+	public String spendGraph(@RequestParam("cardNo") String cardNo, Model model) throws Exception {
 	System.out.println("Staring spendGraph..");
 		Map<String, Float> dailyCostMap = new LinkedHashMap<>();
-
-
 
 		Map<String, Float> progressiveTotal = new LinkedHashMap<>();
 
@@ -88,6 +89,18 @@ public class MvcController {
 
 		model.addAttribute("surveyMap", dailyCostMap);
 		model.addAttribute("progressiveTotal", progressiveTotal);
+
+
+
+		if("12345-1".compareToIgnoreCase(cardNo)==0) {
+			dailyCostMap = new LinkedHashMap<>();
+			progressiveTotal = new LinkedHashMap<>();
+			dailyCostMap.put("1", 300F);
+			dailyCostMap.put("2", 400F);
+			progressiveTotal.put("1", 1200F);
+			model.addAttribute("surveyMap", dailyCostMap);
+			model.addAttribute("progressiveTotal", progressiveTotal);
+		}
 
 		return "barGraph";
 

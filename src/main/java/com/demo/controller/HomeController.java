@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import retrofit2.Response;
 
-import javax.swing.filechooser.FileFilter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,7 +42,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller
 public class HomeController {
-    FileFilter
 
     private final Environment env;
     private final PlaidClient plaidClient;
